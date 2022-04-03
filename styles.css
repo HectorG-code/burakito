@@ -1,0 +1,22 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+	padding: 10vh 20vw;
+}
+
+.players {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	min-height: 10vh;
+}
+
+.player--hand {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
