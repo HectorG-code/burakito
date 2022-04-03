@@ -1,3 +1,5 @@
+import { renderDeck } from "./render.js";
+
 class Card {
 	constructor(number, suit, value) {
 		this.number = number;
@@ -5,6 +7,49 @@ class Card {
 		this.value = value;
 	}
 }
+
+export class Deck {
+	constructor(deck, id) {
+		this.deck = deck;
+		this.id = id;
+	}
+
+	shuffle = () => {
+		let top = this.deck.length;
+
+		while (--top) {
+			let current = Math.floor(Math.random() * (top + 1));
+			[this.deck[current], this.deck[top]] = [
+				this.deck[top],
+				this.deck[current],
+			];
+		}
+	};
+
+	draw = () => {
+		const card = this.deck.pop();
+		this.render();
+		return card;
+	};
+
+	drawAll = () => {
+		const cards = [...this.deck];
+		this.deck = [];
+		this.render();
+		return cards;
+	};
+
+	add = (card) => {
+		this.deck.push(card);
+		this.render();
+	};
+
+	render = () => {
+		renderDeck(this.deck.length, this.id);
+	};
+}
+
+// MOCKUP DATA
 
 const commons = [
 	{ number: "A", value: 20 },
@@ -23,9 +68,8 @@ const commons = [
 ];
 const suits = ["♥", "♦", "♣", "♠"];
 
-export const deck = [];
-
 export const generate = () => {
+	const deck = [];
 	suits.forEach((suit) => {
 		deck.push(
 			...commons.map((common) => {
@@ -35,17 +79,5 @@ export const generate = () => {
 	});
 	deck.push(new Card("Joker", "", 50));
 	deck.push(new Card("Joker", "", 50));
-};
-
-export const shuffle = () => {
-	let top = deck.length;
-
-	while (--top) {
-		let current = Math.floor(Math.random() * (top + 1));
-		[deck[current], deck[top]] = [deck[top], deck[current]];
-	}
-};
-
-export const draw = () => {
-	return deck.pop();
+	return deck;
 };

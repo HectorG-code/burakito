@@ -13,12 +13,24 @@
 
 <body>
     <script type="module" src="./functions/actions.js"></script>
-    <div>
-        <input type="text" id="playerName" />
-        <button id="addPlayer">Add Player</button>
-    </div>
-    <div class="players" id="players"></div>
-    <div><button id="start">Start Game</button></div>
+    <main>
+        <div class="deck">
+            <div class="card" id="drawPile"></div>
+        </div>
+
+        <div class="players" id="players"></div>
+
+        <div class="deck">
+            <div class="card" id="discardPile"></div>
+        </div>
+        <div class="CTAs">
+            <button id="start">Start Game</button>
+            <div class="playerCTA">
+                <input type="text" id="playerName" />
+                <button id="addPlayer">Add Player</button>
+            </div>
+        </div>
+    </main>
 </body>
 
 </html>
